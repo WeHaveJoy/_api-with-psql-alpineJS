@@ -5,7 +5,7 @@ const assert = require('assert');
 const fs = require('fs');
 require('dotenv').config()
 
-const API = require('../api-with-psql-workshop-with-alpine/api');
+const API = require('../_api-with-psql-workshop-with-alpineJS/api');
 const { default: axios } = require('axios');
 const app = express();
 

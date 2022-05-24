@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "start": "node alpine.js"
+    "start": "node alpine.js",
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",

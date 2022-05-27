@@ -81,7 +81,7 @@ module.exports = function (app, db) {
 		try {
 
 			const { description, price, img, season, gender } = req.body;
-
+			console.log(req.body, '---');
 			// insert a new garment in the database
 			await db.none(`insert into garment( description, price, img, season, gender) values($1,$2,$3,$4,$5) on conflict do nothing`, [description, price, img, season, gender]);
 
@@ -91,7 +91,7 @@ module.exports = function (app, db) {
 			});
 
 		} catch (err) {
-			console.log(err);
+			console.log(req.body);
 			res.json({
 				status: 'error',
 				error: err.message

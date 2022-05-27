@@ -2,132 +2,144 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-	<script src="./alpine.js"></script>
-	<link rel="stylesheet" href="style.css">
-	<title>Missy Tee</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="alpine.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Missy Tee</title>
 </head>
 
 <body>
-	<div class="container" x-data="clothing">
+    <div class="container" x-data="clothing">
 
-		<h1>Missy Tee - clothing store</h1>
-		<div class="filter">
-			<h2>Filter</h2>
-			<div class="genders">
-				<label>
-					<input @change="filterData()" x-model="genderFilter" type="radio" name="gender" value="All"> All
-				</label>
+        <h1>Missy Tee - clothing store
+        </h1>
+        <div class="filter">
+            <h2>Filter
+            </h2>
+            <div class="genders">
+                <label>
+                    <input @change="filterData()" x-model="genderFilter" type="radio" name="gender" value="All">
+                    All
+                </label>
 
-				<label>
-					<input @change="filterData()" x-model="genderFilter" type="radio" name="gender" value="Male"> Male
-				</label>
+                <label>
+                    <input @change="filterData()" x-model="genderFilter" type="radio" name="gender" value="Male">
+                    Male
+                </label>
 
-				<label>
-					<input @change="filterData()" x-model="genderFilter" type="radio" name="gender" value="Female">
-					Female
-				</label>
-				<label>
-					<input @change="filterData()" x-model="genderFilter" type="radio" name="gender" value="Unisex">
-					Unisex
-				</label>
-			</div>
-			<div class="seasons">
+                <label>
+                    <input @change="filterData()" x-model="genderFilter" type="radio" name="gender" value="Female">
+                    Female
+                </label>
+                <label>
+                    <input @change="filterData()" x-model="genderFilter" type="radio" name="gender" value="Unisex">
+                    Unisex
+                </label>
+            </div>
+            <div class="seasons">
 
-				<label>
-					<input @change="filterData()" x-model="seasonFilter" type="radio" name="season" value="All"> All
-				</label>
-				<label>
-					<input @change="filterData()" x-model="seasonFilter" type="radio" name="season" value="Summer">
-					Summer
-				</label>
-				<label>
-					<input @change="filterData()" x-model="seasonFilter" type="radio" name="season" value="Winter">
-					Winter
-				</label>
-				<label>
-				</label>
-			</div>
-			<div>
-				Filter by price range:
-				<input @change="filterPrice()" x-model="maxPrice" type="range" name="priceRange" max="1000" step="50"
-					class="priceRange" value="0">
-				R<span x-text="maxPrice">0</span>.00
-			</div>
-		</div>
+                <label>
+                    <input @change="filterData()" x-model="seasonFilter" type="radio" name="season" value="All">
+                    All
+                </label>
+                <label>
+                    <input @change="filterData()" x-model="seasonFilter" type="radio" name="season" value="Summer">
+                    Summer
+                </label>
+                <label>
+                    <input @change="filterData()" x-model="seasonFilter" type="radio" name="season" value="Winter">
+                    Winter
+                </label>
+                <label>
+                </label>
+            </div>
+            <div>
+                Filter
+                by
+                price
+                range:
+                <input @change="filterPrice()" x-model="maxPrice" type="range" name="priceRange" max="1000" step="50"
+                    class="priceRange" value="0">
+                R<span x-text="maxPrice">0</span>.00
+            </div>
+        </div>
 
-		<div class="message hidden">
+        <div class="message hidden">
 
-		</div>
+        </div>
 
-		<div class="addGarment">
+        <div class="addGarment">
 
-			<div class="add button mt1">
-				<button">Add garment</button>
-			</div>
+            <div class="add button mt1">
+                <button">Add garment</button>
+            </div>
 
-			<div class="add garment">
-				<h2>Add garment</h2>
-				<img src="/images/{{img}}" alt="">
-				<form action="/api/garments/" method="post" class="addGarmentForm">
+            <div class="add garment">
+                <h2>Add garment
+                </h2>
+                <img src="/images/{{img}}" alt="">
+                <form action="/api/garments/" method="post" class="addGarmentForm">
 
-					<div class="field">
-						<label for="">Description</label>
-						<input x-model="garmentData.description" type="text" name="description" class="description">
-					</div>
-					<div class="field">
-						<label for="">Image</label>
-						<input x-model="garmentData.img" type="text" name="img" class="img">
-					</div>
-					<div class="field">
-						<label for="">Price</label>
-						<input x-model="garmentData.price" type="number" name="price" step="0.01" class="price">
-					</div>
-					<div class="field">
-						<label for="">Gender</label>
-						<div>
-							<input x-model="garmentData.gender" type="text" name="gender" class="gender">
-						</div>
-					</div>
-					<div class="field">
-						<label for="">Season</label>
-						<div>
-							<input x-model="garmentData.season" type="text" name="season" class="season">
-						</div>
-					</div>
-					<div class="mt1">
-						<input @click="addGarment()" type="button" name="action" value="Add" class="addGarmentBtn">
-						<input type="button" name="action" value="Hide" class="hideAddGarmetBtn">
-					</div>
-				</form>
-			</div>
+                    <div class="field">
+                        <label for="">Description</label>
+                        <input x-model="garmentData.description" type="text" name="description" class="description">
+                    </div>
+                    <div class="field">
+                        <label for="">Image</label>
+                        <input x-model="garmentData.img" type="text" name="img" class="img">
+                    </div>
+                    <div class="field">
+                        <label for="">Price</label>
+                        <input x-model="garmentData.price" type="number" name="price" step="0.01" class="price">
+                    </div>
+                    <div class="field">
+                        <label for="">Gender</label>
+                        <div>
+                            <input x-model="garmentData.gender" type="text" name="gender" class="gender">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="">Season</label>
+                        <div>
+                            <input x-model="garmentData.season" type="text" name="season" class="season">
+                        </div>
+                    </div>
+                    <div class="mt1">
+                        <input @click="addGarment()" type="button" name="action" value="Add" class="addGarmentBtn">
+                        <input type="button" name="action" value="Hide" class="hideAddGarmetBtn">
+                    </div>
+                </form>
+            </div>
 
-		</div>
+        </div>
 
-		<div>
-			<h2>Garments <span x-text="garments.length"></span></h2>
+        <div>
+            <h2>Garments <span x-text="garments.length"></span>
+            </h2>
 
-			<div class="searchResults">
+            <div class="searchResults">
 
-				<div>
+                <div>
 
-					<div class="garments">
-						<template x-for="garment in garments">
-							<div class="garment">
-								<img x-bind:src="`./images/${garment.img}`">
-								<div x-text="garment.description"></div>
-								<div x-text="garment.price"></div>
-							</div>
-						</template>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- <script src="/index.js"></script> -->
+                    <div class="garments">
+                        <template x-for="garment in garments">
+                            <div class="garment">
+                                <img x-bind:src="`./images/${garment.img}`">
+                                <div x-text="garment.description">
+                                </div>
+                                <div x-text="garment.price">
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="/index.js"></script> -->
 </body>
 
 </html>

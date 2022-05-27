@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon alpine.js",
+    "start": "node alpine.js",
+    "start:dev": "nodemon alpine.js",
     "test": "mocha"
   },
   "keywords": [],

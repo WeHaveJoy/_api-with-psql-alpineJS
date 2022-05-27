@@ -39,11 +39,13 @@ document.addEventListener('alpine:init', () => {
 
     addGarment() {
       fetch(`/api/garment/`,{
+        method: "POST",
         body: this.garmentData
       })
         .then(r => r.json())
         .then((result) => {
           this.garments = result.data
+          .catch(err => console.log(err))
         });
     }
 

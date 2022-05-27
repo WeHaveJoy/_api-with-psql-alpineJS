@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 const DATABASE_URL = process.env.DATABASE_URL;
-const PORT= process.env.PORT;
+// const PORT= process.env.PORT;
 const pgp = PgPromise({});
 // const db = pgp(DATABASE_URL);
 const config = {

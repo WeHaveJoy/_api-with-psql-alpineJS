@@ -115,7 +115,7 @@ module.exports = function (app, db) {
 
 			try {
 				const { price } = req.params;
-			const result = await db.many(`select * FROM garment WHERE price <= $1`, [price]);
+			const result = await db.manyOrNone(`select * FROM garment WHERE price <= $1`, [price]);
 
 			res.json({
 				data: result

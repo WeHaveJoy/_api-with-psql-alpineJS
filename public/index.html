@@ -21,7 +21,7 @@
             </h2>
             <div class="genders">
                 <label>
-                    <input @change="filterData()"  type="radio" name="gender" value="All">
+                    <input @change="filterData()" type="radio" name="gender" value="All">
                     All
                 </label>
 
@@ -42,7 +42,7 @@
             <div class="seasons">
 
                 <label>
-                    <input @change="filterData()"  type="radio" name="season" value="All">
+                    <input @change="filterData()" type="radio" name="season" value="All">
                     All
                 </label>
                 <label>
@@ -76,44 +76,50 @@
             <div class="add button mt1">
                 <button">Add garment</button>
             </div>
+            <div x-data="{ show: false }">
+                <button @click="show=!show">Add garment</button>
+                <div x-show="show">
+                    <div class="add garment">
+                        <h2>Add garment
+                        </h2>
+                        <img src="/images/{{img}}" alt="">
+                        <form action="/api/garments/" method="post" class="addGarmentForm">
 
-            <div class="add garment">
-                <h2>Add garment
-                </h2>
-                <img src="/images/{{img}}" alt="">
-                <form action="/api/garments/" method="post" class="addGarmentForm">
+                            <div class="field">
+                                <label for="">Description</label>
+                                <input x-model="garmentData.description" type="text" name="description"
+                                    class="description">
+                            </div>
+                            <div class="field">
+                                <label for="">Image</label>
+                                <input x-model="garmentData.img" type="text" name="img" class="img">
+                            </div>
+                            <div class="field">
+                                <label for="">Price</label>
+                                <input x-model="garmentData.price" type="number" name="price" step="0.01" class="price">
+                            </div>
+                            <div class="field">
+                                <label for="">Gender</label>
+                                <div>
+                                    <input x-model="garmentData.gender" type="text" name="gender" class="gender">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="">Season</label>
+                                <div>
+                                    <input x-model="garmentData.season" type="text" name="season" class="season">
+                                </div>
+                            </div>
+                            <div class="mt1">
+                                <input @click="addGarment()" type="button" name="action" value="Add"
+                                    class="addGarmentBtn">
+                                <input type="button" @click="show=!show" name="action" value="Hide" class="hideAddGarmetBtn">
+                            </div>
+                        </form>
+                    </div>
 
-                    <div class="field">
-                        <label for="">Description</label>
-                        <input x-model="garmentData.description" type="text" name="description" class="description">
-                    </div>
-                    <div class="field">
-                        <label for="">Image</label>
-                        <input x-model="garmentData.img" type="text" name="img" class="img">
-                    </div>
-                    <div class="field">
-                        <label for="">Price</label>
-                        <input x-model="garmentData.price" type="number" name="price" step="0.01" class="price">
-                    </div>
-                    <div class="field">
-                        <label for="">Gender</label>
-                        <div>
-                            <input x-model="garmentData.gender" type="text" name="gender" class="gender">
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label for="">Season</label>
-                        <div>
-                            <input x-model="garmentData.season" type="text" name="season" class="season">
-                        </div>
-                    </div>
-                    <div class="mt1">
-                        <input @click="addGarment()" type="button" name="action" value="Add" class="addGarmentBtn">
-                        <input type="button" name="action" value="Hide" class="hideAddGarmetBtn">
-                    </div>
-                </form>
+                </div>
             </div>
-
         </div>
 
         <div>

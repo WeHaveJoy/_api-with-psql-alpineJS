@@ -16,6 +16,12 @@
 
         <h1>Missy Tee - clothing store
         </h1>
+        <!-- 
+        <div class="login" >
+            <label for="">Please enter your github username: </label>
+            <input x-model="" type="text" name="login"  class="login" >
+            <input type="button" @click="" name="action" value="Login" class="loginBtn">
+        </div> -->
         <div class="filter">
             <h2>Filter
             </h2>
@@ -67,9 +73,7 @@
             </div>
         </div>
 
-        <div class="message hidden">
-
-        </div>
+        <div class="message" x-bind:class="error ? 'error' : ''" x-text="message"></div>
 
         <div class="addGarment">
 
@@ -77,7 +81,7 @@
                 <button">Add garment</button>
             </div>
             <div x-data="{ show: false }">
-                <button @click="show=!show">Add garment</button>
+                <button class="addGarment" @click="show=!show">Add garment</button>
                 <div x-show="show">
                     <div class="add garment">
                         <h2>Add garment
@@ -87,33 +91,34 @@
 
                             <div class="field">
                                 <label for="">Description</label>
-                                <input x-model="garmentData.description" type="text" name="description"
+                                <input  x-model="garmentData.description" type="text" name="description"
                                     class="description">
                             </div>
                             <div class="field">
                                 <label for="">Image</label>
-                                <input x-model="garmentData.img" type="text" name="img" class="img">
+                                <input :disabled="garmentData.description <= 3" x-model="garmentData.img" type="text" name="img" class="img">
                             </div>
                             <div class="field">
                                 <label for="">Price</label>
-                                <input x-model="garmentData.price" type="number" name="price" step="0.01" class="price">
+                                <input :disabled="garmentData.img <= 0" x-model="garmentData.price" type="number" name="price" step="0.01" class="price">
                             </div>
                             <div class="field">
                                 <label for="">Gender</label>
                                 <div>
-                                    <input x-model="garmentData.gender" type="text" name="gender" class="gender">
+                                    <input :disabled="garmentData.price <= 3" x-model="garmentData.gender" type="text" name="gender" class="gender">
                                 </div>
                             </div>
                             <div class="field">
                                 <label for="">Season</label>
                                 <div>
-                                    <input x-model="garmentData.season" type="text" name="season" class="season">
+                                    <input :disabled="garmentData.gender <= 3" x-model="garmentData.season" type="text" name="season" class="season">
                                 </div>
                             </div>
                             <div class="mt1">
-                                <input @click="addGarment()" type="button" name="action" value="Add"
+                                <input :disabled="garmentData.season.length < 3" @click="addGarment()" type="button" name="action" value="Add"
                                     class="addGarmentBtn">
-                                <input type="button" @click="show=!show" name="action" value="Hide" class="hideAddGarmetBtn">
+                                <input type="button" @click="show=!show" name="action" value="Hide"
+                                    class="hideAddGarmetBtn">
                             </div>
                         </form>
                     </div>
@@ -121,7 +126,6 @@
                 </div>
             </div>
         </div>
-
         <div>
             <h2>Garments <span x-text="garments.length"></span>
             </h2>

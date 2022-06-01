@@ -11,6 +11,8 @@ document.addEventListener("alpine:init", () => {
       season: "",
       gender: "",
     },
+    message: "",
+    error: false,
     init() {
       fetch("/api/garments")
         .then((r) => r.json())
@@ -47,8 +49,33 @@ document.addEventListener("alpine:init", () => {
         .then((r) => r.json())
         .then((result) => {
           this.init();
+
+          this.message = "New garment added!";
+        this.error = false;
+
+      setTimeout(() => {
+        this.message = "";
+        this.error = false;
+      }, 3000);
         })
-        .catch((err) => console.log(err));
+         .catch((err) => console.log(err));
     },
+
+    deleteGarments(){
+      fetch(`/api/garments`,{
+
+      })
+    },
+
+    // showMessage() {
+     
+    //     this.message = "New garment added!";
+    //     this.error = false;
+
+    //   setTimeout(() => {
+    //     this.message = "";
+    //     this.error = false;
+    //   }, 3000);
+    // },
   }));
 });

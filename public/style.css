@@ -38,7 +38,12 @@ body {
   }
   .message {
 	margin-top: 1em;
-	padding: 1em;
-	background-color: lightsalmon;
+	/* padding: 1em; */
+	background-color: green;
+	color: white;
+  }
+
+  .error {
+	background-color : red;
   }
   

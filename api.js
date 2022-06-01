@@ -110,6 +110,7 @@ module.exports = function (app, db) {
                 status: 'error',
                 message: `Garment already exists : ${description}`
             });
+
         }
     } catch (err) {
         console.log(err);

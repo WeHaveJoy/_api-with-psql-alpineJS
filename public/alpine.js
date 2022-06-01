@@ -47,16 +47,21 @@ document.addEventListener("alpine:init", () => {
         body: JSON.stringify(this.garmentData),
       })
         .then((r) => r.json())
-        .then((result) => {
+        .then((r) => {
+          if (r.status === 'seccess') {
+            this.message = "New garment added!";
+            this.error = false;
+          }else if (r.status === 'error'){
+            const error = r.message;
+            this.message = error
+            this.error= true;
+        }
+
+        setTimeout(() => {
+          this.message = "";
+          this.error = false;
+        }, 3000);
           this.init();
-
-          this.message = "New garment added!";
-        this.error = false;
-
-      setTimeout(() => {
-        this.message = "";
-        this.error = false;
-      }, 3000);
         })
          .catch((err) => console.log(err));
     },

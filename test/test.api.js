@@ -180,32 +180,29 @@ describe('The Garment API', function () {
 	});
 
 	it('you should be able to group garments by gender and count them', async () => {
-
-		// and below this line for this function will
-		const result = await supertest(app)
-				.get(`/api/garments/grouped`)
-				.expect(200);
-
-		const garmentsGrouped = result.body;
-		// console.log(garmentsGrouped);
-
-		// write your code above this line
-		const expectedResult = [
-			{
-				gender: 'Male',
-				count: '15'
-			},
-			{
-				gender: 'Female',
-				count: '16'
-			},
-			{
-				gender: 'Unisex',
-				count: '4'
-			}
-		]
-		assert.deepStrictEqual(expectedResult, garmentsGrouped.data)
-	});
+        // and below this line for this function will
+        const result = await supertest(app)
+                .get(`/api/garments/grouped`)
+                .expect(200);
+        const garmentsGrouped = result.body;
+        // console.log(garmentsGrouped);
+        // write your code above this line
+        const expectedResult = [
+            {
+                gender: 'Unisex',
+                count: '4'
+            },
+            {
+                gender: 'Male',
+                count: '15'
+            },
+            {
+                gender: 'Female',
+                count: '16'
+            }
+        ]
+        assert.deepStrictEqual(expectedResult, garmentsGrouped.data)
+    });
 
 	it('you should be able to remove all the Unisex garments', async () => {
 

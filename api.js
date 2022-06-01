@@ -150,7 +150,7 @@ module.exports = function (app, db) {
   app.delete("/api/garments/:id", async function (req, res) {
     try {
       const { id } = req.params;
-       await db.none(`DELETE FROM garment WHERE id = $1`, [id]);
+       await db.one(`DELETE FROM garment WHERE id = $1`, [id]);
 
      
     } catch (err) {

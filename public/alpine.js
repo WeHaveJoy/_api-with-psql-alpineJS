@@ -45,12 +45,8 @@ document.addEventListener("alpine:init", () => {
       console.log(id);
       axios
       .delete(`/api/garments/${id}`)
-      .then((r) => r.json())
-      .then((userData) => {
-       this.garments = userData.data;
-        // .catch((err) => console.log(err));
-      });
-      
+      .then(r => this.filterData())
+      .catch((err) => console.log(err));
     },
 
     addGarment() {

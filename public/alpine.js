@@ -1,3 +1,5 @@
+
+
 document.addEventListener("alpine:init", () => {
   Alpine.data("clothing", () => ({
     garments: [],
@@ -39,6 +41,18 @@ document.addEventListener("alpine:init", () => {
         });
     },
 
+    deleteGarments(id){
+      console.log(id);
+      axios
+      .delete(`/api/garments/${id}`)
+      .then((r) => r.json())
+      .then((userData) => {
+       this.garments = userData.data;
+        // .catch((err) => console.log(err));
+      });
+      
+    },
+
     addGarment() {
       console.log(this.garmentData);
       fetch(`/api/garment/`, {
@@ -64,13 +78,10 @@ document.addEventListener("alpine:init", () => {
           this.init();
         })
          .catch((err) => console.log(err));
-    },
+    }
 
-    deleteGarments(){
-      fetch(`/api/garments`,{
-
-      })
-    },
+    
+    
 
     // showMessage() {
      

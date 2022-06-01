@@ -147,14 +147,12 @@ module.exports = function (app, db) {
     }
   });
 
-  app.delete("/api/garments", async function (req, res) {
+  app.delete("/api/garments/:id", async function (req, res) {
     try {
       const { id } = req.params;
-      const result = await db.none(`DELETE * FROM garment WHERE id = $1`, [id]);
+       await db.none(`DELETE FROM garment WHERE id = $1`, [id]);
 
-      res.json({
-        data: result,
-      });
+     
     } catch (err) {
       res.json({
         status: "success",

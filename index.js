@@ -2,6 +2,7 @@ const PgPromise = require("pg-promise");
 const express = require("express");
 const fs = require("fs");
 require("dotenv").config();
+const { default: axios } = require("axios");
 
 const API = require("./api");
 const app = express();
